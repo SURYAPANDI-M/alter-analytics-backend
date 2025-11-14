@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Alter Analytics API",
+    "version": "1.0.0",
+    "description": "Minimal API for testing"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/collect": {
+      "post": {
+        "summary": "Collect event",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "apiKey": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "payload": {
+                    "type": [
+                      "object",
+                      "array",
+                      "string",
+                      "number",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "apiKey",
+                  "type"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/register": {
+      "post": {
+        "summary": "Register user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    }
+  }
+}

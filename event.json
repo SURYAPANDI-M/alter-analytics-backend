@@ -1,0 +1,7 @@
+﻿{
+  "apiKey": "testkey123",
+  "type": "pageview",
+  "payload": {
+    "url": "/home"
+  }
+}

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: npm run dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: "postgres://postgres:password@postgres:5432/analyticsdb"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: analyticsdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
